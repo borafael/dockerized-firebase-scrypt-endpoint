@@ -19,7 +19,7 @@ RUN cd scrypt && \
     
 # -------------------------------------------------- #
     
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jdk-alpine AS build-app
 
 RUN apk add --no-cache \
 	git \
@@ -27,21 +27,16 @@ RUN apk add --no-cache \
 
 RUN git clone https://github.com/borafael/firebase-scrypt-web-wrapper
 
-RUN cd firebase-scrypt-web-wrapper && ls
+RUN cd firebase-scrypt-web-wrapper && mvn package
 
 # -------------------------------------------------- #
 
 FROM openjdk:8-jdk-alpine
 
-RUN apk add --no-cache git
-
-COPY --from=build-app firebase-scrypt-web-wrapper/target/*.jar /opt/app
+RUN apk add --no-cache bash
 
 COPY --from=build-scrypt scrypt/scrypt /usr/local/bin/scrypt
 
+COPY --from=build-app firebase-scrypt-web-wrapper/target/*.jar app.jar
+
 ENTRYPOINT ["java","-jar","app.jar"]
-
-
-
-
-
