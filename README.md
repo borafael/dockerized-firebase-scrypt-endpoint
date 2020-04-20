@@ -1,2 +1,2 @@
-# dockerized-firebase-scrypt-endpoint
-Dockerized firebase scrypt service
+# firebase-scrypt-web-wrapper
+Wraps Firebase's variation of SCrypt hashing algorithm behind a simple REST endpoint
