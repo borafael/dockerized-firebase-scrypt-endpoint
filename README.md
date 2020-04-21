@@ -1,2 +1,3 @@
 # firebase-scrypt-web-wrapper
-Wraps Firebase's variation of SCrypt hashing algorithm behind a simple REST endpoint
+
+Java/Spring Boot version of https://github.com/marianocordoba/oms-firebase-scrypt
