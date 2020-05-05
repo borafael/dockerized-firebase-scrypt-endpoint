@@ -39,4 +39,4 @@ COPY --from=build-scrypt scrypt/scrypt /usr/local/bin/scrypt
 
 COPY --from=build-app firebase-scrypt-web-wrapper/target/*.jar app.jar
 
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-jar","-Dserver.port=9090","app.jar"]
